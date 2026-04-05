@@ -1,0 +1,21 @@
+# Database
+financas.db
+*.db-shm
+*.db-wal
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+venv/
+.venv/
+*.egg-info/
+
+# Logs
+server.log
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

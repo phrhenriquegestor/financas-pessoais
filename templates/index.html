@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finanças Pessoais</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <!-- Sidebar (desktop) -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-icon">&#9875;</span>
+      <span class="logo-text">Finanças</span>
+    </div>
+    <ul class="nav-list">
+      <li class="nav-item active" data-section="dashboard">
+        <span class="nav-icon">&#9632;</span> Dashboard
+      </li>
+      <li class="nav-item" data-section="income">
+        <span class="nav-icon">&#8679;</span> Receitas
+      </li>
+      <li class="nav-item" data-section="debts">
+        <span class="nav-icon">&#128203;</span> Dívidas Fixas
+      </li>
+      <li class="nav-item" data-section="credit">
+        <span class="nav-icon">&#128179;</span> Cartões
+      </li>
+      <li class="nav-item" data-section="investments">
+        <span class="nav-icon">&#128200;</span> Investimentos
+      </li>
+      <li class="nav-item" data-section="goals">
+        <span class="nav-icon">&#127945;</span> Metas
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Bottom nav (mobile) -->
+  <nav class="bottom-nav" id="bottomNav">
+    <button class="bn-item active" data-section="dashboard">
+      <span>&#9632;</span><small>Início</small>
+    </button>
+    <button class="bn-item" data-section="income">
+      <span>&#8679;</span><small>Receitas</small>
+    </button>
+    <button class="bn-item" data-section="debts">
+      <span>&#128203;</span><small>Dívidas</small>
+    </button>
+    <button class="bn-item" data-section="credit">
+      <span>&#128179;</span><small>Cartões</small>
+    </button>
+    <button class="bn-item" data-section="investments">
+      <span>&#128200;</span><small>Investir</small>
+    </button>
+    <button class="bn-item" data-section="goals">
+      <span>&#127945;</span><small>Metas</small>
+    </button>
+  </nav>
+
+  <!-- Main content -->
+  <main class="main-content" id="mainContent">
+
+    <!-- ── Dashboard ──────────────────────────────────────────────────── -->
+    <section id="section-dashboard" class="section active">
+      <div class="section-header">
+        <h1>Dashboard</h1>
+        <span class="subtitle" id="dashDate"></span>
+      </div>
+
+      <div class="cards-grid" id="summaryCards">
+        <div class="card card-green">
+          <div class="card-label">Receita Mensal</div>
+          <div class="card-value" id="dashIncome">R$ 0,00</div>
+        </div>
+        <div class="card card-red">
+          <div class="card-label">Total de Gastos</div>
+          <div class="card-value" id="dashExpenses">R$ 0,00</div>
+        </div>
+        <div class="card card-blue">
+          <div class="card-label">Saldo Disponível</div>
+          <div class="card-value" id="dashNet">R$ 0,00</div>
+        </div>
+        <div class="card card-yellow">
+          <div class="card-label">Fatura Total</div>
+          <div class="card-value" id="dashCredit">R$ 0,00</div>
+        </div>
+        <div class="card card-purple">
+          <div class="card-label">Total Investido</div>
+          <div class="card-value" id="dashInvested">R$ 0,00</div>
+        </div>
+        <div class="card card-score">
+          <div class="card-label">Saúde Financeira</div>
+          <div class="card-value" id="dashScore">0/100</div>
+          <div class="score-label" id="dashScoreLabel"></div>
+        </div>
+      </div>
+
+      <div class="charts-row">
+        <div class="chart-card">
+          <div class="chart-title">Distribuição de Gastos</div>
+          <canvas id="chartExpensePie" height="220"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Saúde Financeira</div>
+          <div class="health-gauge" id="healthGauge">
+            <div class="gauge-score" id="gaugeScore">0</div>
+            <div class="gauge-bar"><div class="gauge-fill" id="gaugeFill"></div></div>
+            <div class="gauge-labels"><span>0</span><span>100</span></div>
+          </div>
+          <div class="health-breakdown" id="healthBreakdown"></div>
+        </div>
+      </div>
+
+      <div class="card recent-card">
+        <div class="chart-title">Atividade Recente</div>
+        <div id="recentActivity"></div>
+      </div>
+    </section>
+
+    <!-- ── Receitas ───────────────────────────────────────────────────── -->
+    <section id="section-income" class="section">
+      <div class="section-header">
+        <h1>Receitas</h1>
+        <button class="btn btn-primary" onclick="Income.openForm()">+ Adicionar</button>
+      </div>
+      <div class="card" style="margin-bottom:1rem">
+        <div class="card-label">Total Mensal Normalizado</div>
+        <div class="card-value" id="incomeTotalLabel">R$ 0,00</div>
+      </div>
+      <div class="table-card" id="incomeList"></div>
+    </section>
+
+    <!-- ── Dívidas Fixas ──────────────────────────────────────────────── -->
+    <section id="section-debts" class="section">
+      <div class="section-header">
+        <h1>Dívidas Fixas</h1>
+        <button class="btn btn-primary" onclick="Debts.openForm()">+ Adicionar</button>
+      </div>
+      <div class="card" style="margin-bottom:1rem">
+        <div class="card-label">Total Mensal</div>
+        <div class="card-value card-value-red" id="debtsTotalLabel">R$ 0,00</div>
+      </div>
+      <div id="debtsList" class="items-grid"></div>
+    </section>
+
+    <!-- ── Cartões ────────────────────────────────────────────────────── -->
+    <section id="section-credit" class="section">
+      <div class="section-header">
+        <h1>Cartões de Crédito</h1>
+        <button class="btn btn-primary" onclick="Credit.openCardForm()">+ Novo Cartão</button>
+      </div>
+      <div id="creditCards"></div>
+    </section>
+
+    <!-- ── Investimentos ──────────────────────────────────────────────── -->
+    <section id="section-investments" class="section">
+      <div class="section-header">
+        <h1>Investimentos</h1>
+        <button class="btn btn-primary" onclick="Investments.openForm()">+ Adicionar</button>
+      </div>
+      <div class="inv-layout">
+        <div>
+          <div class="card" style="margin-bottom:1rem">
+            <div class="card-label">Total Investido</div>
+            <div class="card-value" id="invTotalLabel">R$ 0,00</div>
+          </div>
+          <div id="investmentsList"></div>
+        </div>
+        <div class="projection-panel card" id="projectionPanel">
+          <div class="chart-title">Simulação de Projeção</div>
+          <div id="projectionPlaceholder" class="placeholder-text">
+            Selecione um investimento para ver a projeção.
+          </div>
+          <div id="projectionContent" style="display:none">
+            <div class="proj-controls">
+              <label>Taxa anual (%)</label>
+              <input type="number" id="projRate" step="0.1" min="0" max="100" class="input" />
+              <label>Prazo (anos)</label>
+              <input type="number" id="projYears" min="1" max="50" value="10" class="input" />
+              <button class="btn btn-secondary" onclick="Investments.runProjection()">Calcular</button>
+            </div>
+            <div class="proj-results" id="projResults"></div>
+            <canvas id="chartInvestment" height="200"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Metas ──────────────────────────────────────────────────────── -->
+    <section id="section-goals" class="section">
+      <div class="section-header">
+        <h1>Metas &amp; Objetivos</h1>
+        <button class="btn btn-primary" onclick="Goals.openForm()">+ Nova Meta</button>
+      </div>
+      <div class="calculator-card card">
+        <div class="chart-title">Calculadora Rápida</div>
+        <div class="calc-grid">
+          <div>
+            <label>Valor do objetivo (R$)</label>
+            <input type="number" id="calcTarget" class="input" placeholder="Ex: 5000" />
+          </div>
+          <div>
+            <label>Já tenho guardado (R$)</label>
+            <input type="number" id="calcCurrent" class="input" placeholder="Ex: 1000" value="0" />
+          </div>
+          <div>
+            <label>Vou guardar por mês (R$)</label>
+            <input type="number" id="calcMonthly" class="input" placeholder="Ex: 500" />
+          </div>
+          <div style="display:flex;align-items:flex-end">
+            <button class="btn btn-primary" onclick="Goals.calculate()" style="width:100%">Calcular</button>
+          </div>
+        </div>
+        <div id="calcResult" class="calc-result" style="display:none"></div>
+        <canvas id="chartGoalCalc" height="140" style="display:none;margin-top:1rem"></canvas>
+      </div>
+      <div id="goalsList" class="items-grid" style="margin-top:1rem"></div>
+    </section>
+
+  </main>
+
+  <!-- ── Modal ─────────────────────────────────────────────────────────── -->
+  <div class="modal-overlay" id="modalOverlay" onclick="App.closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2 id="modalTitle">Título</h2>
+        <button class="modal-close" onclick="App.closeModal()">&#10005;</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- ── Toast ─────────────────────────────────────────────────────────── -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Scripts -->
+  <script src="/static/js/app.js"></script>
+  <script src="/static/js/charts.js"></script>
+  <script src="/static/js/dashboard.js"></script>
+  <script src="/static/js/income.js"></script>
+  <script src="/static/js/debts.js"></script>
+  <script src="/static/js/credit.js"></script>
+  <script src="/static/js/investments.js"></script>
+  <script src="/static/js/goals.js"></script>
+</body>
+</html>

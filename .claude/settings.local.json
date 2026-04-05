@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh --version)",
+      "Read(//c/Program Files/**)",
+      "Read(//c/Users/Pedro Henrique/AppData/Local/Programs/**)"
+    ]
+  }
+}
