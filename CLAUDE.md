@@ -2,6 +2,13 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## GitHub Repository
+
+- **Repo:** https://github.com/phrhenriquegestor/financas-pessoais
+- **Branch:** `main`
+- **Auto-sync:** Every file edited or created by Claude is automatically committed and pushed to GitHub via a `PostToolUse` hook configured in `.claude/settings.local.json`.
+- **Excluded from git:** `financas.db`, `__pycache__/`, `server.log` (see `.gitignore`)
+
 ## Running the app
 
 ```bash
