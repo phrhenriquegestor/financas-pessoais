@@ -3,7 +3,9 @@
     "allow": [
       "Bash(gh --version)",
       "Read(//c/Program Files/**)",
-      "Read(//c/Users/Pedro Henrique/AppData/Local/Programs/**)"
+      "Read(//c/Users/Pedro Henrique/AppData/Local/Programs/**)",
+      "Skill(update-config)",
+      "Skill(update-config:*)"
     ]
   }
 }
