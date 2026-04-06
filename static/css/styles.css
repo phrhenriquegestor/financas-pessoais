@@ -396,12 +396,15 @@ select.input { appearance: none; }
 /* ── Items grid (debts, goals) ─────────────────────────────────────────── */
 .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
 .item-card {
-  background: var(--bg-secondary);
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1.1rem 1.2rem;
   position: relative;
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
+.item-card:hover { border-color: rgba(79,142,247,0.3); box-shadow: var(--shadow); }
 .item-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.6rem; }
 .item-card-label { font-weight: 600; font-size: 0.95rem; }
 .item-card-actions { display: flex; gap: 0.25rem; }
