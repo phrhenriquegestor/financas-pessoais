@@ -75,13 +75,19 @@ const Dashboard = (() => {
       `;
     }
 
-    // Overview pie chart
-    Charts.overviewPie('chartOverviewPie', {
-      income,
-      debts,
-      credit,
-      contrib,
-    });
+    // Overview pie chart — usa expensePie com dados e cores customizadas
+    const overviewData = [
+      { label: 'Receita Mensal',   value: income  },
+      { label: 'Despesas Fixas',   value: debts   },
+      { label: 'Fatura do Cartão', value: credit  },
+      { label: 'Aporte Mensal',    value: contrib },
+    ].filter(item => item.value > 0);
+
+    Charts.expensePie(
+      'chartOverviewPie',
+      overviewData,
+      ['#00d4aa', '#fb923c', '#4f8ef7', '#a78bfa']
+    );
 
     // Recent activity
     const recent = document.getElementById('recentActivity');
