@@ -370,10 +370,11 @@ select.input { appearance: none; }
 
 /* ── Table card ────────────────────────────────────────────────────────── */
 .table-card {
-  background: var(--bg-secondary);
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
+  box-shadow: var(--shadow-sm);
 }
 .table-row {
   display: flex;
