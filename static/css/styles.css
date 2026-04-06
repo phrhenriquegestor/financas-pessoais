@@ -1,20 +1,26 @@
 /* ── Variables ─────────────────────────────────────────────────────────── */
 :root {
-  --bg-primary: #0f1117;
-  --bg-secondary: #1a1d27;
-  --bg-tertiary: #22263a;
-  --border: #2e3248;
+  --bg-primary: #0b0d14;
+  --bg-secondary: #13161f;
+  --bg-tertiary: #1c1f2e;
+  --bg-card: #181b28;
+  --border: #252a3d;
+  --border-subtle: #1e2133;
   --accent-green: #00d4aa;
   --accent-red: #ff4d6d;
   --accent-blue: #4f8ef7;
   --accent-yellow: #f5a623;
   --accent-purple: #a78bfa;
+  --accent-orange: #fb923c;
   --text-primary: #e8eaf0;
   --text-secondary: #8b92a9;
-  --text-muted: #555d7a;
-  --sidebar-w: 220px;
-  --radius: 12px;
+  --text-muted: #4a526b;
+  --sidebar-w: 240px;
+  --radius: 14px;
+  --radius-sm: 8px;
   --transition: 0.18s ease;
+  --shadow: 0 4px 24px rgba(0,0,0,0.35);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.25);
 }
 
 /* ── Reset ─────────────────────────────────────────────────────────────── */
