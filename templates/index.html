@@ -119,15 +119,17 @@
 
       <div class="charts-row">
         <div class="chart-card">
-          <div class="chart-title">Distribuição de Gastos</div>
-          <canvas id="chartExpensePie" height="220"></canvas>
+          <div class="chart-title">📊 Visão Geral Financeira</div>
+          <div class="chart-subtitle">Distribuição mensal da sua renda</div>
+          <canvas id="chartOverviewPie" height="240"></canvas>
         </div>
         <div class="chart-card">
-          <div class="chart-title">Saúde Financeira</div>
+          <div class="chart-title">🏅 Saúde Financeira</div>
+          <div class="chart-subtitle">Pontuação calculada com base nos seus dados</div>
           <div class="health-gauge" id="healthGauge">
             <div class="gauge-score" id="gaugeScore">0</div>
             <div class="gauge-bar"><div class="gauge-fill" id="gaugeFill"></div></div>
-            <div class="gauge-labels"><span>0</span><span>100</span></div>
+            <div class="gauge-labels"><span>0</span><span>50</span><span>100</span></div>
           </div>
           <div class="health-breakdown" id="healthBreakdown"></div>
         </div>
