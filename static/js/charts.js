@@ -46,17 +46,15 @@ const Charts = (() => {
 
     const fmtBRL = v => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v);
 
-    // Build segments: only include non-zero values
     const segments = [
-      { label: 'Receita Mensal',    value: income,  color: '#00d4aa' },
-      { label: 'Despesas Fixas',    value: debts,   color: '#fb923c' },
-      { label: 'Fatura do Cartão',  value: credit,  color: '#4f8ef7' },
-      { label: 'Aporte Mensal',     value: contrib, color: '#a78bfa' },
+      { label: 'Receita Mensal',   value: income,  color: '#00d4aa' },
+      { label: 'Despesas Fixas',   value: debts,   color: '#fb923c' },
+      { label: 'Fatura do Cartão', value: credit,  color: '#4f8ef7' },
+      { label: 'Aporte Mensal',    value: contrib, color: '#a78bfa' },
     ].filter(s => s.value > 0);
 
     if (!segments.length) {
-      // Placeholder when no data
-      segments.push({ label: 'Sem dados', value: 1, color: '#252a3d' });
+      segments.push({ label: 'Sem dados', value: 1, color: '#3a3f5c' });
     }
 
     instances[canvasId] = new Chart(canvas, {
@@ -67,37 +65,22 @@ const Charts = (() => {
           data: segments.map(s => s.value),
           backgroundColor: segments.map(s => s.color),
           borderColor: '#13161f',
-          borderWidth: 3,
-          hoverBorderWidth: 3,
-          hoverOffset: 6,
+          borderWidth: 2,
         }]
       },
       options: {
         responsive: true,
-        animation: { animateRotate: true, duration: 700 },
         plugins: {
           legend: {
             position: 'bottom',
-            labels: {
-              color: '#8b92a9',
-              font: { size: 11, family: 'Inter' },
-              padding: 16,
-              usePointStyle: true,
-              pointStyleWidth: 8,
-            }
+            labels: { color: '#8b92a9', font: { size: 11 }, padding: 14 }
           },
           tooltip: {
-            backgroundColor: '#1c1f2e',
-            borderColor: '#252a3d',
-            borderWidth: 1,
-            titleColor: '#e8eaf0',
-            bodyColor: '#8b92a9',
-            padding: 10,
             callbacks: {
               label: ctx => {
                 const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
-                const pct   = total > 0 ? (ctx.raw / total * 100).toFixed(1) : '0';
-                return `  ${fmtBRL(ctx.raw)}  (${pct}%)`;
+                const pct = total > 0 ? (ctx.raw / total * 100).toFixed(1) : '0';
+                return ` ${ctx.label}: ${fmtBRL(ctx.raw)} (${pct}%)`;
               }
             }
           }
