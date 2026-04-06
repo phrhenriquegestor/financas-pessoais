@@ -208,5 +208,5 @@ const Charts = (() => {
     });
   }
 
-  return { expensePie, investment, goalTimeline, destroy };
+  return { expensePie, overviewPie, investment, goalTimeline, destroy };
 })();
