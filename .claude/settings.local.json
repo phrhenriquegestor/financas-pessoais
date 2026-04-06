@@ -5,7 +5,11 @@
       "Read(//c/Program Files/**)",
       "Read(//c/Users/Pedro Henrique/AppData/Local/Programs/**)",
       "Skill(update-config)",
-      "Skill(update-config:*)"
+      "Skill(update-config:*)",
+      "Bash(python main.py)",
+      "Bash(curl -s http://localhost:8000/api/dashboard/)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d, indent=2, ensure_ascii=False\\)\\)\")",
+      "Bash(curl -s http://localhost:8000/)"
     ]
   },
   "hooks": {

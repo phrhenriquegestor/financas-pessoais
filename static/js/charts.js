@@ -7,12 +7,12 @@ const Charts = (() => {
     if (instances[id]) { instances[id].destroy(); delete instances[id]; }
   }
 
-  function expensePie(canvasId, categories) {
+  function expensePie(canvasId, categories, customColors) {
     destroy(canvasId);
     const canvas = document.getElementById(canvasId);
     if (!canvas || !categories.length) return;
 
-    const colors = ['#ff4d6d','#f5a623','#4f8ef7','#00d4aa','#a78bfa','#fb923c','#34d399','#60a5fa'];
+    const colors = customColors || ['#ff4d6d','#f5a623','#4f8ef7','#00d4aa','#a78bfa','#fb923c','#34d399','#60a5fa'];
     instances[canvasId] = new Chart(canvas, {
       type: 'doughnut',
       data: {
